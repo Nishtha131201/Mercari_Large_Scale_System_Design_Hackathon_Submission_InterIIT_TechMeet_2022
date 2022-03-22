@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const methodOverride = require("method-override");
 const mongoSanitize = require("express-mongo-sanitize");
-
+const mongoose = require("mongoose");
 const cookieSession = require("cookie-session");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
@@ -11,6 +11,8 @@ const cors = require("cors");
 const helmet = require("helmet");
 
 const PORT = 8080 || process.env.PORT;
+
+const patientHistroyRoutes = require("./routes/patientHistoryRoutes");
 
 mongoose
   .connect("mongodb://localhost:27017", {
@@ -65,6 +67,8 @@ app.use(
     parameterLimit: 50000,
   })
 );
+
+app.use("/:nhid", patientHistroyRoutes);
 
 app.use(helmet({ contentSecurityPolicy: false }));
 

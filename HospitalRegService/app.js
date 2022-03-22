@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const methodOverride = require("method-override");
 const mongoSanitize = require("express-mongo-sanitize");
-
+const mongoose = require("mongoose");
 const cookieSession = require("cookie-session");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
