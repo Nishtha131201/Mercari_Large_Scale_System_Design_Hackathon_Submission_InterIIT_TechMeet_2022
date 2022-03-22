@@ -1,18 +1,22 @@
 const { Sequelize, DataTypes } = require("sequelize");
 const sequelize = require("../config/sequelize");
 
-const Temp = sequelize.define(
-  "temp",
+const DiagnoseModel = sequelize.define(
+  "Diagnose",
   {
-    address_id: {
+    visit_id: {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
       primaryKey: true,
     },
+    prescription:{
+      type: DataTypes.TEXT,
+    },
+    
   },
   {
     freezeTableName: true,
   }
 );
 
-module.exports = Temp;
+module.exports = DiagnoseModel;
