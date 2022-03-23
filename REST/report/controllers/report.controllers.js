@@ -1,8 +1,8 @@
-const OPD = require("../models/opd");
+const Report = require("../models/report");
 
-exports.getAllOPD = async (req, res) => {
+exports.getAllReport = async (req, res) => {
   try {
-    const data = await OPD.find({});
+    const data = await Report.find({});
     return res.status(200).json({ status: "Success", data: data });
   } catch (error) {
     return res
@@ -10,12 +10,13 @@ exports.getAllOPD = async (req, res) => {
       .json({ status: "Failed", message: "Request Failed" });
   }
 };
-exports.postOPD = async (req, res) => {
+exports.postReport = async (req, res) => {
   try {
     const data = req.body;
-    const newOPD = new OPD(data);
-    const opd = await newOPD.save();
-    if (opd) return res.status(200).json({ status: "Success", data: opd });
+    const newReport = new Report(data);
+    const report = await newReport.save();
+    if (report)
+      return res.status(200).json({ status: "Success", data: report });
     else
       return res
         .status(424)
@@ -26,10 +27,10 @@ exports.postOPD = async (req, res) => {
       .json({ status: "Failed", message: "Request failed" });
   }
 };
-exports.getOPD = async (req, res) => {
+exports.getReport = async (req, res) => {
   try {
     const id = req.params.id;
-    const data = await OPD.findById(id);
+    const data = await Report.findById(id);
     if (data) return res.status(200).json({ status: "Success", data: data });
     else
       return res
@@ -41,12 +42,13 @@ exports.getOPD = async (req, res) => {
       .json({ status: "Failed", message: "Request failed" });
   }
 };
-exports.editOPD = async (req, res) => {
+exports.editReport = async (req, res) => {
   try {
     const id = req.params.id;
     const data = req.body;
-    const opd = await OPD.findByIdAndUpdate(id, data);
-    if (opd) return res.status(200).json({ status: "Success", data: opd });
+    const report = await Report.findByIdAndUpdate(id, data);
+    if (report)
+      return res.status(200).json({ status: "Success", data: report });
     else
       return res
         .status(424)
@@ -57,16 +59,16 @@ exports.editOPD = async (req, res) => {
       .json({ status: "Failed", message: "Request failed" });
   }
 };
-exports.deleteOPD = async (req, res) => {
+exports.deleteReport = async (req, res) => {
   try {
     const id = req.params.id;
-    const opd = OPD.findById(id);
-    if (!opd)
+    const report = Report.findById(id);
+    if (!report)
       return res
         .status(424)
         .json({ status: "Failed", message: "Does Not Exist" });
 
-    await OPD.findByIdAndRemove(id);
+    await Report.findByIdAndRemove(id);
     return res
       .status(200)
       .json({ status: "Success", message: "Successfully Deleted" });
