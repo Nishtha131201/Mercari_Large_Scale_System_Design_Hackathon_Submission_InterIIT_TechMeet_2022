@@ -1,5 +1,5 @@
 {
-  "name": "doctorid",
+  "name": "opd",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -17,6 +17,7 @@
     "express": "^4.17.3",
     "fs": "^0.0.1-security",
     "mongoose": "^6.2.8",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "method-override": "^3.0.0"
   }
 }
