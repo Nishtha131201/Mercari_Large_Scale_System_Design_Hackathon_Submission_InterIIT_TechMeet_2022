@@ -13,6 +13,7 @@ const app = express();
 const sequelize = require("./config/sequelize");
 
 // Routes will come here
+const userDataRoutes = require("./routes/user.routes");
 
 const corsOptions = {
   origin: "*",
@@ -47,6 +48,8 @@ sequelize
   .catch((err) => {
     console.log(err.message);
   });
+
+app.use("/user", userDataRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server started on http://localhost:3000/`);
