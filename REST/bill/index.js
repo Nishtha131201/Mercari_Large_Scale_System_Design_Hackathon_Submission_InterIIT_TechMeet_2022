@@ -6,7 +6,7 @@ const mongoose = require("mongoose");
 const PORT = process.env.PORT || 8000;
 const app = express();
 const { MONGO_URL } = process.env;
-const routes = require("./routes/inventory.routes");
+const routes = require("./routes/bill.routes");
 const methodOverride = require("method-override");
 
 var corsOptions = {
@@ -41,7 +41,7 @@ mongoose
 
 // parse application/json
 app.use(bodyParser.json());
-app.use("/inventory", routes);
+app.use("/bill", routes);
 
 app.listen(PORT, (req, res) => {
   console.log(`Server is running on Port ${PORT}`);

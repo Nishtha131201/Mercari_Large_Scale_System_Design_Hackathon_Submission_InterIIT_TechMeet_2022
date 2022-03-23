@@ -2,11 +2,9 @@ const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 require("dotenv").config();
-const mongoose = require("mongoose");
 const PORT = process.env.PORT || 8000;
 const app = express();
-const { MONGO_URL } = process.env;
-const routes = require("./routes/inventory.routes");
+const routes = require("./routes/doctor.routes");
 const methodOverride = require("method-override");
 
 var corsOptions = {
@@ -30,18 +28,10 @@ app.use((req, res, next) => {
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(methodOverride("_method"));
-//Database Connection
-mongoose
-  .connect(MONGO_URL, {
-    useUnifiedTopology: true,
-    useNewUrlParser: true,
-  })
-  .then(() => console.log("Successful DB connection"))
-  .catch((err) => console.error("DB Connection Failed"));
 
 // parse application/json
 app.use(bodyParser.json());
-app.use("/inventory", routes);
+app.use("/doctor", routes);
 
 app.listen(PORT, (req, res) => {
   console.log(`Server is running on Port ${PORT}`);
