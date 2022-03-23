@@ -1,18 +1,15 @@
 const express = require("express");
 const cors = require("cors");
-const morgan = require("morgan");
-const Sequelize = require("sequelize");
 const bodyParser = require("body-parser");
-
 require("dotenv").config();
-
-const PORT = process.env.PORT || 4500;
-
+const mongoose = require("mongoose");
+const PORT = process.env.PORT || 8000;
 const app = express();
+const { MONGO_URL } = process.env;
+const routes = require("./routes/prescription.routes");
+const methodOverride = require("method-override");
 
-const sequelize = require("./config/sequelize");
-
-const corsOptions = {
+var corsOptions = {
   origin: "*",
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   credentials: true,
@@ -30,22 +27,22 @@ app.use((req, res, next) => {
   );
   next();
 });
-
-app.use(morgan("dev"));
-
+// parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-sequelize
-  .sync({
-    force: true,
+app.use(methodOverride("_method"));
+//Database Connection
+mongoose
+  .connect(MONGO_URL, {
+    useUnifiedTopology: true,
+    useNewUrlParser: true,
   })
-  .then((result) => {
-    console.log("Sync Done");
-  })
-  .catch((err) => {
-    console.log(err.message);
-  });
+  .then(() => console.log("Successful DB connection"))
+  .catch((err) => console.error("DB Connection Failed"));
 
-app.listen(PORT, () => {
-  console.log(`Server started on http://localhost:${PORT}/`);
+// parse application/json
+app.use(bodyParser.json());
+app.use("/prescription", routes);
+
+app.listen(PORT, (req, res) => {
+  console.log(`Server is running on Port ${PORT}`);
 });
