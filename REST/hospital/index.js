@@ -45,6 +45,8 @@ sequelize
   .catch((err) => {
     console.log(err.message);
   });
+const Routes = require("./routes/hospital.routes");
+app.use("/hospital", Routes);
 
 app.listen(PORT, () => {
   console.log(`Server started on http://localhost:${PORT}/`);
