@@ -7,6 +7,7 @@ const PORT = process.env.PORT || 8000;
 const app = express();
 const { MONGO_URL } = process.env;
 const routes = require("./routes/opd.routes");
+const methodOverride = require("method-override");
 
 var corsOptions = {
   origin: "*",
@@ -28,7 +29,7 @@ app.use((req, res, next) => {
 });
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
-
+app.use(methodOverride("_method"));
 //Database Connection
 mongoose
   .connect(MONGO_URL, {
