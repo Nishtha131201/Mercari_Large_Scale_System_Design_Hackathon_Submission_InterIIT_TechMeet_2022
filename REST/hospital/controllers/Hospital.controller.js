@@ -1,6 +1,9 @@
-const DoctorId = require("../models/doctorId");
+const Hospital = require("../models/hospital");
+const Hospital = require("../models/hospital");
 const getAllHospital = async (req, res) => {
   try {
+    const hospitals = await hospitals.findAll({});
+    return res.json(hospitals);
   } catch (error) {
     console.log(error.message);
     return res.send(error);
@@ -8,6 +11,59 @@ const getAllHospital = async (req, res) => {
 };
 const postNewHospital = async (req, res) => {
   try {
+    const {
+      name,
+      mobile_number,
+      address_line_1,
+      address_line_2,
+      city,
+      pincode,
+      license_number,
+    } = req.body;
+    const errors = [];
+    if (
+      !name ||
+      !mobile_number ||
+      !address_line_1 ||
+      !city ||
+      !pincode ||
+      !license_number
+    ) {
+      errors.push({ message: "Incomplete Information" });
+    }
+
+    const hospital = await Hospital.findAll({
+      where: {
+        license_number,
+      },
+    });
+
+    if (hospital.length > 0) {
+      errors.push({
+        msg: "License Number Already exists",
+      });
+    }
+    if (errors.length >= 1) {
+      return res.json({
+        Success: false,
+        errors,
+      });
+    }
+
+    const newHospital = await newHospital.create({
+      name,
+      mobile_number,
+      address_line_1,
+      address_line_2,
+      city,
+      pincode,
+      license_number,
+    });
+    console.log(newHospital);
+    return res.json({
+      success: true,
+      newHospital,
+    });
   } catch (error) {
     console.log(error.message);
     return res.send(error);
@@ -15,6 +71,14 @@ const postNewHospital = async (req, res) => {
 };
 const getHospital = async (req, res) => {
   try {
+    const { id } = req.body;
+    const hospital = await Hospital.findOne({
+      where: {
+        id,
+      },
+    });
+
+    return res.json(hospital);
   } catch (error) {
     console.log(error.message);
     return res.send(error);
@@ -22,6 +86,29 @@ const getHospital = async (req, res) => {
 };
 const editHospital = async (req, res) => {
   try {
+    const {
+      name,
+      mobile_number,
+      address_line_1,
+      address_line_2,
+      city,
+      pincode,
+      license_number,
+    } = req.body;
+
+    const editedHospital = await Hospital.update({
+      name,
+      mobile_number,
+      address_line_1,
+      address_line_2,
+      city,
+      pincode,
+      license_number,
+    });
+    return res.json({
+      success: true,
+      editedHospital,
+    });
   } catch (error) {
     console.log(error.message);
     return res.send(error);
@@ -29,6 +116,14 @@ const editHospital = async (req, res) => {
 };
 const deleteHospital = async (req, res) => {
   try {
+    await Hospital.destroy({
+      where: {
+        id: req.body.id,
+      },
+    });
+    return res.json({
+      success: true,
+    });
   } catch (error) {
     console.log(error.message);
     return res.send(error);

@@ -55,7 +55,9 @@ const getDoctorId = async (req, res) => {
   try {
     const { id } = req.body;
     const doctorId = await DoctorId.findOne({
-      id,
+      where: {
+        id,
+      },
     });
 
     return res.json(doctorId);
