@@ -1,20 +1,14 @@
 const { Sequelize, DataTypes } = require("sequelize");
 const sequelize = require("../config/sequelize");
 
-const DoctorId = sequelize.define("DoctorId", {
+const Patient = sequelize.define("Patient", {
   id: {
     type: String,
     unique: true,
     allowNull: false,
     primaryKey: true,
   },
-  secret: {
-    type: String,
-    allowNull: false,
-  },
-  name: {
-    type: String,
-  },
+  
 });
 
-module.exports = DoctorId;
+module.exports = Patient;

@@ -1,7 +1,7 @@
 const { Sequelize, DataTypes } = require("sequelize");
 const sequelize = require("../config/sequelize");
 
-const DoctorId = sequelize.define("DoctorId", {
+const HospitalId = sequelize.define("HospitalId", {
   id: {
     type: String,
     unique: true,
@@ -17,4 +17,4 @@ const DoctorId = sequelize.define("DoctorId", {
   },
 });
 
-module.exports = DoctorId;
+module.exports = HospitalId;
