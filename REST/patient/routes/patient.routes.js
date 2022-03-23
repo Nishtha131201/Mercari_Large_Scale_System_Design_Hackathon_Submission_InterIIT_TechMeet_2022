@@ -2,10 +2,10 @@ const express = require("express");
 const router = express.Router({
   mergeParams: true,
 });
-const Controller = require("../controllers/doctorId.controller");
-router.get("/", Controller.getAllDoctorId);
-router.post("/", Controller.postNewDoctorId);
-router.get("/:id", Controller.getDoctorId);
-router.put("/:id/edit", Controller.editDoctorId);
-router.post("/:id/delete", Controller.deleteDoctorId);
+const Controller = require("../controllers/patient.controller");
+router.get("/", Controller.getAllPatient);
+router.post("/", Controller.postNewPatient);
+router.get("/:id", Controller.getPatient);
+router.put("/:id/edit", Controller.editPatient);
+router.post("/:id/delete", Controller.deletePatient);
 module.exports = router;
