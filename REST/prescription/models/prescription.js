@@ -8,4 +8,4 @@ const prescriptionSchema = new mongoose.Schema({
   follow_up: { type: Date },
 });
 
-module.exports = mongoose.model("OPD", prescriptionSchema);
+module.exports = mongoose.model("Prescription", prescriptionSchema);
