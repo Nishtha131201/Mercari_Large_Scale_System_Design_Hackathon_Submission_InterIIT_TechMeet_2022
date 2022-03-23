@@ -1,29 +1,35 @@
 const { Sequelize, DataTypes } = require("sequelize");
 const sequelize = require("../config/sequelize");
 
-const Doctor = sequelize.define("Doctor", {
-  name:{
-    type:String,
+const Doctor = sequelize.define(
+  "Doctor",
+  {
+    id: {
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
+      primaryKey: true,
+    },
+    license: {
+      type: DataTypes.STRING,
+      unique: true,
+      allowNull: false,
+    },
+    name: {
+      type: DataTypes.STRING,
+    },
+    education: {
+      type: DataTypes.STRING,
+    },
+    years_of_experience: {
+      type: DataTypes.INTEGER,
+    },
+    hospital: {
+      type: DataTypes.ARRAY(DataTypes.JSON),
+    },
   },
-  education:{
-    type:String
-  },
-  specialization:{
-    type:String
-  },
-  Timing:{
-    type:String
-  },
-  experience:{
-    type:String
-  },
-  current_status:{
-    type:String
-  },
-  licno:{
-    type:String
+  {
+    freezeTableName: true,
   }
-  
-});
+);
 
 module.exports = Doctor;

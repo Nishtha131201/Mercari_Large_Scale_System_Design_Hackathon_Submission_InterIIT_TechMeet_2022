@@ -1,5 +1,4 @@
 const Hospital = require("../models/hospital");
-const Hospital = require("../models/hospital");
 const getAllHospital = async (req, res) => {
   try {
     const hospitals = await hospitals.findAll({});
@@ -19,6 +18,7 @@ const postNewHospital = async (req, res) => {
       city,
       pincode,
       license_number,
+      doctors,
     } = req.body;
     const errors = [];
     if (
@@ -50,7 +50,7 @@ const postNewHospital = async (req, res) => {
       });
     }
 
-    const newHospital = await newHospital.create({
+    const newHospital = await Hospital.create({
       name,
       mobile_number,
       address_line_1,
@@ -58,6 +58,7 @@ const postNewHospital = async (req, res) => {
       city,
       pincode,
       license_number,
+      doctors,
     });
     console.log(newHospital);
     return res.json({
@@ -94,17 +95,26 @@ const editHospital = async (req, res) => {
       city,
       pincode,
       license_number,
+      doctors,
     } = req.body;
 
-    const editedHospital = await Hospital.update({
-      name,
-      mobile_number,
-      address_line_1,
-      address_line_2,
-      city,
-      pincode,
-      license_number,
-    });
+    const editedHospital = await Hospital.update(
+      {
+        name,
+        mobile_number,
+        address_line_1,
+        address_line_2,
+        city,
+        pincode,
+        license_number,
+        doctors,
+      },
+      {
+        where: {
+          id: req.body.id,
+        },
+      }
+    );
     return res.json({
       success: true,
       editedHospital,
