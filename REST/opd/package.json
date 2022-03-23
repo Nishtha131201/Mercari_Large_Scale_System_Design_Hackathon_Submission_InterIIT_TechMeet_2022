@@ -1,10 +1,12 @@
 {
-  "name": "opd",
+  "name": "doctorid",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": " nodemon app.js",
+    "start": "node app.js"
   },
   "author": "",
   "license": "ISC",
@@ -16,6 +18,5 @@
     "fs": "^0.0.1-security",
     "mongoose": "^6.2.8",
     "morgan": "^1.10.0",
-    "sequelize": "^6.17.0"
   }
 }

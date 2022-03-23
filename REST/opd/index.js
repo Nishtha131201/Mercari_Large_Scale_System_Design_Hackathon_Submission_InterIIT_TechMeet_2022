@@ -13,7 +13,6 @@ var corsOptions = {
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   credentials: true,
 };
-
 app.use(cors(corsOptions));
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*"); //Change this later to restrict it to react app only
