@@ -1,33 +1,33 @@
 const DoctorId = require("../models/doctorId");
-const getAllDoctorId = async (req, res) => {
+const getAllDoctor = async (req, res) => {
   try {
   } catch (error) {
     console.log(error.message);
     return res.send(error);
   }
 };
-const postNewDoctorId = async (req, res) => {
+const postNewDoctor = async (req, res) => {
   try {
   } catch (error) {
     console.log(error.message);
     return res.send(error);
   }
 };
-const getDoctorId = async (req, res) => {
+const getDoctor = async (req, res) => {
   try {
   } catch (error) {
     console.log(error.message);
     return res.send(error);
   }
 };
-const editDoctorId = async (req, res) => {
+const editDoctor = async (req, res) => {
   try {
   } catch (error) {
     console.log(error.message);
     return res.send(error);
   }
 };
-const deleteDoctorId = async (req, res) => {
+const deleteDoctor = async (req, res) => {
   try {
   } catch (error) {
     console.log(error.message);
@@ -35,9 +35,9 @@ const deleteDoctorId = async (req, res) => {
   }
 };
 module.exports = {
-  getAllDoctorId,
-  postNewDoctorId,
-  getDoctorId,
-  editDoctorId,
-  deleteDoctorId,
+  getAllDoctor,
+  postNewDoctor,
+  getDoctor,
+  editDoctor,
+  deleteDoctor,
 };
