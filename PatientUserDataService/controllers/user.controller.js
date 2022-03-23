@@ -1,5 +1,5 @@
 const Patient = require("../models/patient");
-
+const PatientDependee = require("../models/patientDependee");
 /**
  *
  * TODO:
@@ -14,7 +14,18 @@ const getUserData = async (req, res) => {
         NHID: req.params.id,
       },
     });
-    res.json(patient);
+    if (!patient.dependant) return res.json(patient);
+
+    const dependee = await PatientDependee.findOne({
+      where: {
+        patientNHID: patient.NHID,
+      },
+    });
+
+    return res.json({
+      patient,
+      dependee,
+    });
     // const history = getHistory(req.params.id);
     // res.json({patient, history})
   } catch (error) {
