@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const morgan = require("morgan");
 const Sequelize = require("sequelize");
-
+const bodyParser = require("body-parser");
 require("dotenv").config();
 const PORT = process.env.PORT || 8000;
 const app = express();
@@ -28,8 +28,12 @@ app.use((req, res, next) => {
   );
   next();
 });
-app.use("/diagnose", diagnoseRoutes);
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }));
 
+// parse application/json
+app.use(bodyParser.json());
+app.use("/diagnose", diagnoseRoutes);
 sequelize
   .sync({
     force: true,

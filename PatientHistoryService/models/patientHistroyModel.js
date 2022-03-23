@@ -4,7 +4,7 @@ const patientHistorySchema = new mongoose.Schema({
   nhid: { type: String, required: true },
   timeStamp: { type: Date, default: Date.now() },
   hospital: { type: String, required: true },
-  docId: { type: String, required: true },
+  doc: { type: Object, required: true },
   diagnosis: { type: String, required: true },
   outcomes: { type: String, required: true },
   prescription: { type: String, required: true },

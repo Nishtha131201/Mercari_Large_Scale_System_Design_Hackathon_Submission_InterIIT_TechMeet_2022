@@ -10,7 +10,7 @@ const cors = require("cors");
 // console.log("[Mongodb Url]", MONGO_URL);
 const helmet = require("helmet");
 
-const PORT = 8080 || process.env.PORT;
+const PORT = 8000 || process.env.PORT;
 
 const patientHistroyRoutes = require("./routes/patientHistoryRoutes");
 
@@ -68,7 +68,7 @@ app.use(
   })
 );
 
-app.use("/:nhid", patientHistroyRoutes);
+app.use("/patienthistory", patientHistroyRoutes);
 
 app.use(helmet({ contentSecurityPolicy: false }));
 

@@ -9,6 +9,7 @@ const app = express();
 
 const sequelize = require("./config/sequelize");
 const registrationRoutes = require("./routes/registrationRoutes");
+const verifyRoutes = require("./routes/verifyRoutes.js");
 // Const Model
 var corsOptions = {
   origin: "*",
@@ -28,7 +29,8 @@ app.use((req, res, next) => {
   );
   next();
 });
-app.use("/", registrationRoutes);
+app.use("/registration", registrationRoutes);
+app.use("/verify", verifyRoutes);
 
 sequelize
   .sync({

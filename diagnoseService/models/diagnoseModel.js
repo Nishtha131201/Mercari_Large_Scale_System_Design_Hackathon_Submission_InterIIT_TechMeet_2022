@@ -4,15 +4,17 @@ const sequelize = require("../config/sequelize");
 const DiagnoseModel = sequelize.define(
   "Diagnose",
   {
-    visit_id: {
+    _id: {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
       primaryKey: true,
     },
-    prescription:{
+    visit_Id: {
       type: DataTypes.TEXT,
     },
-    
+    prescription: {
+      type: DataTypes.TEXT,
+    },
   },
   {
     freezeTableName: true,
