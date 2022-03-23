@@ -17,6 +17,10 @@ const postNewInventory = async (req, res) => {
     const { name, quantity, consumable } = req.body;
     const { hospital_id } = req.params;
     const errors = [];
+    if (!name || !quantity || !consumable)
+      errors.push({
+        msg: "Incomplete information",
+      });
 
     const hospital = await Hospital.findAll({
       where: {
@@ -56,22 +60,6 @@ const getInventory = async (req, res) => {
 };
 const editInventory = async (req, res) => {
   try {
-    const { name, quantity, consumable } = req.body;
-    const { hospital_id } = req.params;
-
-    let data;
-    data = { name, quantity, consumable };
-    const updateInventory = await Inventory.findByIdAndUpdate(
-      req.params.hospital_id,
-      data
-    );
-
-    if (!updateInventory) {
-      return res.json({ message: "Unable to edit inventory", errors });
-    }
-
-    inventory.save();
-    console.log(inventory);
   } catch (err) {
     console.log(err.message);
     return res.json(err);
@@ -79,11 +67,6 @@ const editInventory = async (req, res) => {
 };
 const deleteInventory = async (req, res) => {
   try {
-    const id = req.params.hospital_id;
-    const inventory = await Inventory.findById(id);
-
-    await Inventory.findByIdAndRemove(id);
-    console.log("Inventory Deleted");
   } catch (err) {
     console.log(err.message);
     return res.json(err);
