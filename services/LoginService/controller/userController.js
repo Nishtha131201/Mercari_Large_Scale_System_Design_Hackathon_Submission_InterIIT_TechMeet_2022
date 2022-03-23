@@ -1,4 +1,4 @@
-const bcrypt = require("bcrypt");
+// const bcrypt = require("bcrypt");
 const _ = require("lodash");
 const axios = require("axios");
 const otpGenerator = require("otp-generator");
@@ -6,8 +6,10 @@ const otpGenerator = require("otp-generator");
 const { User } = require("../model/user");
 const { Otp } = require("../model/otpModel");
 const client = require("twilio")(
-  process.env.TWILIO_ACCOUNT_SID,
-  process.env.TWILIO_AUTH_TOKEN
+  // process.env.TWILIO_ACCOUNT_SID,
+  // process.env.TWILIO_AUTH_TOKEN
+  "ACa428e82527e05c7ea9d00efb378e537d",
+  "516c5510f51714f82913bed337723043"
 );
 
 module.exports.verifyPhoneNumber = async (req, res) => {
