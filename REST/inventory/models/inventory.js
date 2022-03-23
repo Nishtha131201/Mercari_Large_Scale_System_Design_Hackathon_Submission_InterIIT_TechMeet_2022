@@ -1,8 +1,10 @@
 const mongoose = require("mongoose");
 
 const inventorySchema = new mongoose.Schema({
-  prescription_id: { type: Number, required: true },
-  report: { type: Array, default: [] },
+  name: { type: String, required: true },
+  quantity: { type: Number, default: 0 },
+  consumable: { type: Boolean, default: false },
+  hospital_id: { type: String, required: true },
 });
 
 module.exports = mongoose.model("Inventory", inventorySchema);
