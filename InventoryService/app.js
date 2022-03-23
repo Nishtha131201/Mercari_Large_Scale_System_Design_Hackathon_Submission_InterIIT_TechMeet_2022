@@ -1,28 +1,19 @@
 const express = require("express");
-const app = express();
-const methodOverride = require("method-override");
-const mongoSanitize = require("express-mongo-sanitize");
-
-const cookieSession = require("cookie-session");
-const cookieParser = require("cookie-parser");
+const mongoose = require("mongoose");
 const cors = require("cors");
-//const MONGO_URL = "mongodb://localhost/SA_DB";
-// console.log("[Mongodb Url]", MONGO_URL);
-const helmet = require("helmet");
+const morgan = require("morgan");
+const bodyParser = require("body-parser");
+const Sequelize = require("sequelize");
 
-const PORT = 8080 || process.env.PORT;
+require("dotenv").config();
+const PORT = process.env.PORT || 3000;
+const app = express();
 
-mongoose
-  .connect("mongodb://localhost:27017", {
-    useUnifiedTopology: true,
-    useNewUrlParser: true,
-    useCreateIndex: true,
-    useFindAndModify: false,
-  })
-  .then(() => console.log("Successful DB connection"))
-  .catch((err) => console.error("DB connection fail"));
+const sequelize = require("./config/sequelize");
 
-var corsOptions = {
+const InventoryRoutes = require("./routes/inventory.routes");
+
+const corsOptions = {
   origin: "*",
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   credentials: true,
@@ -41,33 +32,41 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(cookieParser());
-app.use(express.json({ limit: "50mb" }));
-// app.use(express.static(__dirname + "./uploads"));
+app.use(morgan("dev"));
 
-app.use(methodOverride("_method"));
-app.use(mongoSanitize());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
-// SESSION MIDDLEWARE
-app.use(
-  cookieSession({
-    name: "bill-service-session",
-    maxAge: 30 * 24 * 60 * 60 * 1000,
-    keys: ["session 1"],
-    httpOnly: false,
+const mongoURI =
+  process.env.MONGODB_URI || "mongodb://localhost:27017/hms_test";
+
+mongoose
+  .connect(mongoURI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
   })
-);
-app.use(express.json({ limit: "50mb" }));
-app.use(
-  express.urlencoded({
-    limit: "50mb",
-    extended: true,
-    parameterLimit: 50000,
+  .then(() => {
+    console.log("MongoDB Contected");
   })
-);
+  .catch((err) => {
+    console.log(err.message);
+  });
 
-app.use(helmet({ contentSecurityPolicy: false }));
+sequelize
+  .sync({
+    force: true,
+  })
+  .then((result) => {
+    console.log("Sync Done");
+  })
+  .catch((err) => {
+    console.log(err.message);
+  });
 
-app.listen(PORT, () => {
-  console.log(`Server running at PORT ${PORT}`);
+// Routes
+
+app.listen(process.env.PORT || 3000, () => {
+  console.log(
+    `Server started on http://localhost:${process.env.PORT || 3000}/`
+  );
 });
