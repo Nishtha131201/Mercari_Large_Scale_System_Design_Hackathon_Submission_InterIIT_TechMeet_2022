@@ -31,6 +31,9 @@ const Hospital = sequelize.define(
       type: DataTypes.STRING,
       unique: true,
     },
+    doctors: {
+      type: DataTypes.ARRAY(DataTypes.JSON),
+    },
     chain: {
       type: DataTypes.STRING,
     },
