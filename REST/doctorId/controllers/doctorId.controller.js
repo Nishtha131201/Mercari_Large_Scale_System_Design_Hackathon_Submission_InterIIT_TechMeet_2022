@@ -2,7 +2,7 @@ const DoctorId = require("../models/doctorId");
 
 const getAllDoctorId = async (req, res) => {
   try {
-    const doctorid = await doctorid.findAll({});
+    const doctorid = await DoctorId.findAll({});
     return res.json(doctorid);
   } catch (error) {
     console.log(error.message);
