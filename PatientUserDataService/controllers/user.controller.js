@@ -1,7 +1,11 @@
 const Patient = require("../models/patient");
 
-// getHistory = async (NHID) => {}
-// Will be used to get patient history
+/**
+ *
+ * TODO:
+ * getHistory = async (NHID) => {}
+ * Will be used to get patient history
+ */
 
 const getUserData = async (req, res) => {
   try {
