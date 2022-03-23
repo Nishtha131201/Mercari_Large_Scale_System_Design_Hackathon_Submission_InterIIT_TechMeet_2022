@@ -30,10 +30,7 @@ const Patient = sequelize.define(
     mobile_number: {
       type: DataTypes.STRING,
     },
-    address_line_1: {
-      type: DataTypes.STRING,
-    },
-    address_line_2: {
+    address: {
       type: DataTypes.STRING,
     },
     city: {
@@ -45,7 +42,7 @@ const Patient = sequelize.define(
     emergency_contact_name: {
       type: DataTypes.STRING,
     },
-    emergency_contact: {
+    emergency_contact_number: {
       type: DataTypes.STRING,
     },
     aadhar: {

@@ -6,7 +6,7 @@ const bodyParser = require("body-parser");
 
 require("dotenv").config();
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 4500;
 
 const app = express();
 
@@ -52,5 +52,5 @@ sequelize
 app.use("/user", userDataRoutes);
 
 app.listen(PORT, () => {
-  console.log(`Server started on http://localhost:3000/`);
+  console.log(`Server started on http://localhost:4500/`);
 });
