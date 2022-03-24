@@ -43,8 +43,9 @@ mongoose
 app.use(bodyParser.json());
 app.use("/bill", routes);
 
-app.listen(PORT, (req, res) => {
+const server = app.listen(PORT, (req, res) => {
   console.log(`Server is running on Port ${PORT}`);
 });
 
 module.exports.handler = serverless(app);
+module.exports = server;

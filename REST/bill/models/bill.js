@@ -1,10 +1,10 @@
 const mongoose = require("mongoose");
 
 const billSchema = new mongoose.Schema({
-  prescription_id: { type: Number, required: true },
-  bill_id: { type: Number, required: true },
+  prescription_id: { type: String, required: true },
+  bill_id: { type: String, required: true },
   patient_name: { type: String, required: true },
-  patient_contact: { type: Number, required: true },
+  patient_contact: { type: String, required: true },
   bill_items: { type: Array, default: [] },
 });
 
