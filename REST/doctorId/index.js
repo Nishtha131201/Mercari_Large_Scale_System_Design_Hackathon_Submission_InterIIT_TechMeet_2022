@@ -7,7 +7,7 @@ const serverless = require("serverless-http");
 
 require("dotenv").config();
 
-const PORT = process.env.PORT || 4501;
+const PORT = process.env.PORT || 8000;
 
 const app = express();
 

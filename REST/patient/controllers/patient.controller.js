@@ -1,5 +1,5 @@
 const Patient = require("../models/patient");
-const getAllPatient = async (req, res) => {
+exports.getAllPatient = async (req, res) => {
   try {
     const patients = await Patient.findAll({});
     return res.json(patients);
@@ -8,17 +8,17 @@ const getAllPatient = async (req, res) => {
     return res.send(error);
   }
 };
-const postNewPatient = async (req, res) => {
+exports.postNewPatient = async (req, res) => {
   try {
     const {
-      nhid,
+      NHID,
       name,
       gender,
       weight,
       height,
       dob,
-      modile_number,
-      aadhaar,
+      mobile_number,
+      aadhar_number,
       blood_group,
       address,
       pincode,
@@ -27,17 +27,16 @@ const postNewPatient = async (req, res) => {
       dependant,
       dependee,
     } = req.body;
-
     const errors = [];
     if (
-      !nhid ||
+      !NHID ||
       !name ||
       !gender ||
       !weight ||
       !height ||
       !dob ||
-      !modile_number ||
-      !aadhaar ||
+      !mobile_number ||
+      !aadhar_number ||
       !blood_group ||
       !address ||
       !pincode ||
@@ -51,12 +50,12 @@ const postNewPatient = async (req, res) => {
 
     const patient = await Patient.findAll({
       where: {
-        nhid,
+        NHID,
       },
     });
     const pat = await Patient.findAll({
       where: {
-        aadhaar,
+        aadhar_number,
       },
     });
     if (patient.length > 0 || pat.length > 0) {
@@ -71,14 +70,14 @@ const postNewPatient = async (req, res) => {
       });
     }
     const newPatient = await Patient.create({
-      nhid,
+      NHID,
       name,
       gender,
       weight,
       height,
       dob,
-      modile_number,
-      aadhaar,
+      mobile_number,
+      aadhar_number,
       blood_group,
       address,
       pincode,
@@ -89,14 +88,13 @@ const postNewPatient = async (req, res) => {
     });
     return res.json({
       success: true,
-      newPatient,
     });
   } catch (error) {
     console.log(error.message);
     return res.send(error);
   }
 };
-const getPatient = async (req, res) => {
+exports.getPatient = async (req, res) => {
   try {
     const { id } = req.body;
     const patient = await Patient.findOne({
@@ -110,7 +108,7 @@ const getPatient = async (req, res) => {
     return res.send(error);
   }
 };
-const editPatient = async (req, res) => {
+exports.editPatient = async (req, res) => {
   try {
     const {
       nhid,
@@ -163,7 +161,7 @@ const editPatient = async (req, res) => {
     return res.send(error);
   }
 };
-const deletePatient = async (req, res) => {
+exports.deletePatient = async (req, res) => {
   try {
     await Patient.destroy({
       where: {
@@ -178,17 +176,11 @@ const deletePatient = async (req, res) => {
     return res.send(error);
   }
 };
-module.exports = {
-  getAllPatient,
-  postNewPatient,
-  getPatient,
-  editPatient,
-  deletePatient,
-};
 
-exports.getPatientByNHID = (req, res) => {
+exports.getPatientByNHID = async (req, res) => {
   try {
     const NHID = req.params.NHID;
+    console.log(NHID);
     const data = await Patient.findOne({
       where: {
         NHID,
@@ -196,7 +188,7 @@ exports.getPatientByNHID = (req, res) => {
     });
     if (!data) {
       return res
-        .status(424)
+        .status(209)
         .json({ status: "Failure", message: "Does Not Exist" });
     }
     return res
