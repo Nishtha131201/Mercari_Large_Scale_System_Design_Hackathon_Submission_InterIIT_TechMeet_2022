@@ -10,7 +10,7 @@ provider:
   region: ap-south-1
 
 functions:
-  opdTest:
+  presriptionTest:
     handler: index.handler
     events:
       - http: ANY /

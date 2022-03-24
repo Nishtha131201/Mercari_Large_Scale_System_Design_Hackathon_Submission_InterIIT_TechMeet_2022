@@ -24,6 +24,7 @@ jobs:
           echo "DB_PASS=${{secrets.DB_PASS}}" >> .env 
           echo "DB_DATABASE=${{secrets.DB_DATABASE}}" >> .env 
           echo "DB_PORT=${{secrets.DB_PORT}}" >> .env 
+          echo "MONGO_URL=${{secrets.MONGO_URL}}" >> .env
       - name: Test
         run: npm test
       - name: deploy

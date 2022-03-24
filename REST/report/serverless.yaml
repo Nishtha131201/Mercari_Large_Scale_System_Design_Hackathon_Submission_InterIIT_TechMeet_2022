@@ -1,4 +1,4 @@
-service: opd
+service: report
 
 frameworkVersion: '3'
 
@@ -10,7 +10,7 @@ provider:
   region: ap-south-1
 
 functions:
-  opdTest:
+  reportTest:
     handler: index.handler
     events:
       - http: ANY /

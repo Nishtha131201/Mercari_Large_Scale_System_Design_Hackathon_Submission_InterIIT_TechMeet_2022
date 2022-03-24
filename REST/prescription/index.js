@@ -9,6 +9,7 @@ const { MONGO_URL } = process.env;
 const routes = require("./routes/prescription.routes");
 const methodOverride = require("method-override");
 app.use(methodOverride("_method"));
+const serverless = require("serverless-http");
 var corsOptions = {
   origin: "*",
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
@@ -46,3 +47,4 @@ app.use("/prescription", routes);
 app.listen(PORT, (req, res) => {
   console.log(`Server is running on Port ${PORT}`);
 });
+module.exports.handler = serverless(app);
