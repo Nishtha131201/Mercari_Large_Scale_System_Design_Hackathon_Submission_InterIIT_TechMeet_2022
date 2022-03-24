@@ -4,7 +4,9 @@ exports.getHospital = (req, res) => {
   try {
     const id = req.params.id;
     axios
-      .get(`http://localhost:8000/hospital/${id}`)
+      .get(
+        `https://5s017in2z5.execute-api.ap-south-1.amazonaws.com/dev/hospital/${id}`
+      )
       .then((response) => {
         res.status(200).json({ status: "Success", data: response });
       })
@@ -22,7 +24,9 @@ exports.getBillDetails = (req, res) => {
   try {
     const prescription_id = req.params.prescription_id;
     axios
-      .get(`http://localhost:8000/bill/${prescription_id}`)
+      .get(
+        `https://5s017in2z5.execute-api.ap-south-1.amazonaws.com/dev/bill/${prescription_id}`
+      )
       .then((response) => {
         res.status(200).json({ status: "Success", data: response });
       })
@@ -49,16 +53,19 @@ exports.addHospital = async (req, res) => {
       chain_name,
     } = req.body;
     axios
-      .post("http://localhost:8000/hospital/", {
-        name,
-        id,
-        doctors,
-        contact_number,
-        timings,
-        address,
-        is_multi_chain,
-        chain_name,
-      })
+      .post(
+        "https://5s017in2z5.execute-api.ap-south-1.amazonaws.com/dev/hospital/",
+        {
+          name,
+          id,
+          doctors,
+          contact_number,
+          timings,
+          address,
+          is_multi_chain,
+          chain_name,
+        }
+      )
       .then((response) => {
         res.status(200).json({
           status: "Success",
@@ -82,11 +89,14 @@ exports.HospitalLogin = (req, res) => {
   try {
     const { hospital_id, secret_phase, hospital_name } = req.body;
     axios
-      .post("http://localhost:8000/hospitalid/", {
-        hospital_id,
-        secret_phase,
-        hospital_name,
-      })
+      .post(
+        "https://5s017in2z5.execute-api.ap-south-1.amazonaws.com/dev/hospitalid/",
+        {
+          hospital_id,
+          secret_phase,
+          hospital_name,
+        }
+      )
       .then((response) => {
         res.status(200).json({
           status: "Success",
@@ -116,13 +126,16 @@ exports.addBillDetails = (req, res) => {
       bill_items,
     } = req.body;
     axios
-      .post("http://localhost:8000/bill/", {
-        prescription_id,
-        bill_id,
-        patient_name,
-        patient_contact,
-        bill_items,
-      })
+      .post(
+        "https://5s017in2z5.execute-api.ap-south-1.amazonaws.com/dev/bill/",
+        {
+          prescription_id,
+          bill_id,
+          patient_name,
+          patient_contact,
+          bill_items,
+        }
+      )
       .then((response) => {
         res.status(200).json({
           status: "Success",

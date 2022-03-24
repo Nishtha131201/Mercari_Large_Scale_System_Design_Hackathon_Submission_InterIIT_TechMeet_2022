@@ -4,7 +4,9 @@ exports.getDoctor = (req, res) => {
   try {
     const docid = req.params.docid;
     axios
-      .get(`http://localhost:8000/doctor/${docid}`)
+      .get(
+        `https://5s017in2z5.execute-api.ap-south-1.amazonaws.com/dev/doctor/${docid}`
+      )
       .then((response) => {
         res.status(200).json({ status: "Success", data: response });
       })
@@ -30,15 +32,18 @@ exports.addDoctor = async (req, res) => {
       contact_number,
     } = req.body;
     axios
-      .post("http://localhost:8000/doctor/", {
-        id,
-        license,
-        name,
-        education,
-        years_of_experience,
-        hospital,
-        contact_number,
-      })
+      .post(
+        "https://5s017in2z5.execute-api.ap-south-1.amazonaws.com/dev/doctor/",
+        {
+          id,
+          license,
+          name,
+          education,
+          years_of_experience,
+          hospital,
+          contact_number,
+        }
+      )
       .then((response) => {
         res.status(200).json({
           status: "Success",
@@ -62,11 +67,14 @@ exports.DoctorLogin = (req, res) => {
   try {
     const { docid, secret_phase, name } = req.body;
     axios
-      .post("http://localhost:8000/doctorid/", {
-        docid,
-        secret_phase,
-        name,
-      })
+      .post(
+        "https://5s017in2z5.execute-api.ap-south-1.amazonaws.com/dev/doctorid/",
+        {
+          docid,
+          secret_phase,
+          name,
+        }
+      )
       .then((response) => {
         res.status(200).json({
           status: "Success",
@@ -91,13 +99,16 @@ exports.prescribe = (req, res) => {
     var NHID = req.params.NHID;
     const { timestamp, medicines, lab_tests, followup } = req.body;
     axios
-      .post("http://localhost:8000/prescription/", {
-        NHID,
-        timestamp,
-        medicines,
-        lab_tests,
-        followup,
-      })
+      .post(
+        "https://5s017in2z5.execute-api.ap-south-1.amazonaws.com/dev/prescription/",
+        {
+          NHID,
+          timestamp,
+          medicines,
+          lab_tests,
+          followup,
+        }
+      )
       .then((response) => {
         res.status(200).json({
           status: "Success",
@@ -121,9 +132,12 @@ exports.labtest = (req, res) => {
   try {
     var NHID = req.params.NHID;
     axios
-      .post("http://localhost:8000/report/", {
-        NHID,
-      })
+      .post(
+        "https://5s017in2z5.execute-api.ap-south-1.amazonaws.com/dev/report/",
+        {
+          NHID,
+        }
+      )
       .then((response) => {
         res.status(200).json({
           status: "Success",
