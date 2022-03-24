@@ -16,7 +16,7 @@ exports.postBill = async (req, res) => {
     const newBill = new Bill(data);
     const bill = await newBill.save();
     if (bill) return res.status(200).json({ status: "Success", data: bill });
-    else
+    
       return res
         .status(424)
         .json({ status: "Failed", message: "Invalid Data" });
@@ -45,7 +45,7 @@ exports.editBill = async (req, res) => {
   try {
     const id = req.params.id;
     const data = req.body;
-    const bill = await Bill.findByIdAndUpdate(id, data);
+    const bill = await Bill.findAndUpdate({prescription_id: id, data});
     if (bill) return res.status(200).json({ status: "Success", data: bill });
     else
       return res
