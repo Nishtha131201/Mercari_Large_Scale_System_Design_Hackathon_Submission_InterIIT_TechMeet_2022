@@ -20,22 +20,25 @@ exports.addPatient = async (req, res) => {
     } = req.body;
     console.log(req.body);
     axios
-      .post("http://localhost:8000/patient/", {
-        NHID,
-        name,
-        gender,
-        height,
-        weight,
-        dob,
-        mobile_number,
-        aadhar_number,
-        blood_group,
-        address,
-        emergency_contact_name,
-        emergency_contact_number,
-        dependant,
-        dependee,
-      })
+      .post(
+        "https://5s017in2z5.execute-api.ap-south-1.amazonaws.com/dev/patient/",
+        {
+          NHID,
+          name,
+          gender,
+          height,
+          weight,
+          dob,
+          mobile_number,
+          aadhar_number,
+          blood_group,
+          address,
+          emergency_contact_name,
+          emergency_contact_number,
+          dependant,
+          dependee,
+        }
+      )
       .then((response) => {
         console.log(response);
         res.status(200).json({
@@ -57,7 +60,9 @@ exports.getPatientDetails = async (req, res) => {
   try {
     const NHID = req.params.NHID;
     axios
-      .get(`http://localhost:8000/patient/${NHID}`)
+      .get(
+        `https://5s017in2z5.execute-api.ap-south-1.amazonaws.com/dev/patient/${NHID}`
+      )
       .then((response) => {
         res.status(200).json({ status: "Success", data: response });
       })
@@ -73,7 +78,9 @@ exports.getPatientMedicalHistory = async (req, res) => {
   try {
     const NHID = req.params.NHID;
     axios
-      .get(`http://localhost:8000/opd?NHID=${NHID}`)
+      .get(
+        `https://5s017in2z5.execute-api.ap-south-1.amazonaws.com/dev/opd?NHID=${NHID}`
+      )
       .then((response) => {
         res.status(200).json({ status: "Success", data: response });
       })
@@ -91,7 +98,9 @@ exports.getPatientMedicinePrescription = async (req, res) => {
   try {
     const prescription_id = req.params.prescriptionID;
     axios
-      .get(`http://localhost:8000/prescription/${prescription_id}`)
+      .get(
+        `https://5s017in2z5.execute-api.ap-south-1.amazonaws.com/dev/prescription/${prescription_id}`
+      )
       .then((response) => {
         res.status(200).json({ status: "Success", data: response });
       })
@@ -109,7 +118,9 @@ exports.getPatientLabReports = async (req, res) => {
   try {
     const prescription_id = req.params.prescription_id;
     axios
-      .get(`http://localhost:8000/report/${prescription_id}`)
+      .get(
+        `https://5s017in2z5.execute-api.ap-south-1.amazonaws.com/dev/report/${prescription_id}`
+      )
       .then((response) => {
         res.status(200).json({ status: "Success", data: response });
       })
