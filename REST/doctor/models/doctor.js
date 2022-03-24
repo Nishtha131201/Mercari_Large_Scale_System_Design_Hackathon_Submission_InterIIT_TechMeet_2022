@@ -24,7 +24,7 @@ const Doctor = sequelize.define(
       type: DataTypes.INTEGER,
     },
     hospital: {
-      type: DataTypes.ARRAY(DataTypes.JSON),
+      type: DataTypes.JSON,
     },
     contact_number: {
       type: DataTypes.NUMBER,

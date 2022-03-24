@@ -6,6 +6,6 @@ const Controller = require("../controllers/doctorId.controller");
 router.get("/", Controller.getAllDoctorId);
 router.post("/", Controller.postNewDoctorId);
 router.get("/:id", Controller.getDoctorId);
-router.put("/:id/edit", Controller.editDoctorId);
+router.post("/:id/edit", Controller.editDoctorId);
 router.post("/:id/delete", Controller.deleteDoctorId);
 module.exports = router;

@@ -3,7 +3,7 @@ const cors = require("cors");
 const morgan = require("morgan");
 const Sequelize = require("sequelize");
 const bodyParser = require("body-parser");
-
+const serverless = require("serverless-http");
 require("dotenv").config();
 
 const PORT = process.env.PORT || 8000;
@@ -54,3 +54,5 @@ app.use("/doctor", Routes);
 app.listen(PORT, () => {
   console.log(`Server started on http://localhost:${PORT}/`);
 });
+
+module.exports.handler = serverless(app);

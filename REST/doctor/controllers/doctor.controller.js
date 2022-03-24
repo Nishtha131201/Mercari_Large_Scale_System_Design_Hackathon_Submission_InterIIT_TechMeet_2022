@@ -120,7 +120,7 @@ const deleteDoctor = async (req, res) => {
   }
 };
 
-exports.getDoctorByDocID = async (req, res) => {
+getDoctorByDocID = async (req, res) => {
   try {
     const { id } = req.params.docid;
     const doctor = await Doctor.findOne({
@@ -140,4 +140,5 @@ module.exports = {
   getDoctor,
   editDoctor,
   deleteDoctor,
+  getDoctorByDocID,
 };

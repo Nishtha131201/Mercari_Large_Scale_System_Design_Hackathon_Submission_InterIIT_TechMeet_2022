@@ -21,6 +21,7 @@
     "mongoose": "^6.2.8",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.15",
+    "serverless-http": "^2.7.0",
     "supertest": "^6.2.2"
   },
   "jest": {
