@@ -3,7 +3,6 @@ const router = express.Router({ mergeparams: true });
 
 const controllers = require("../controllers/opd.contollers");
 
-router.get("/", controllers);
 router.post("/", controllers.postOPD);
 router.get("/:id", controllers.getOPD);
 router.put("/:id/edit", controllers.editOPD);
