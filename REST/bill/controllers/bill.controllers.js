@@ -28,8 +28,8 @@ exports.postBill = async (req, res) => {
 };
 exports.getBill = async (req, res) => {
   try {
-    const id = req.params.id;
-    const data = await Bill.findById(id);
+    const prescription_id = req.params.prescription_id;
+    const data = await Bill.findOne({ prescription_id: prescription_id });
     if (data) return res.status(200).json({ status: "Success", data: data });
     else
       return res

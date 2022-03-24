@@ -54,7 +54,7 @@ exports.addPatient = async (req, res) => {
   }
 };
 
-exports.getPatientDetails = (req, res) => {
+exports.getPatientDetails = async (req, res) => {
   try {
     const NHID = req.params.NHID;
     axios

@@ -119,6 +119,21 @@ const deleteDoctor = async (req, res) => {
     return res.send(error);
   }
 };
+
+exports.getDoctorByDocID = async (req, res) => {
+  try {
+    const { id } = req.params.docid;
+    const doctor = await Doctor.findOne({
+      where: {
+        id,
+      },
+    });
+    return res.json(doctor);
+  } catch (error) {
+    console.log(error.message);
+    return res.send(error);
+  }
+};
 module.exports = {
   getAllDoctor,
   postNewDoctor,

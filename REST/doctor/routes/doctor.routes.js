@@ -8,4 +8,5 @@ router.post("/", Controller.postNewDoctor);
 router.get("/:id", Controller.getDoctor);
 router.put("/:id/edit", Controller.editDoctor);
 router.post("/:id/delete", Controller.deleteDoctor);
+router.get("/:docid", Controller.getDoctorByDocID);
 module.exports = router;
