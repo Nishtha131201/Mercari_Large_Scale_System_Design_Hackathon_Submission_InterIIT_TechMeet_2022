@@ -1,20 +1,24 @@
 const { Sequelize, DataTypes } = require("sequelize");
 const sequelize = require("../config/sequelize");
 
-const HospitalId = sequelize.define("HospitalId", {
-  id: {
-    type: String,
-    unique: true,
-    allowNull: false,
-    primaryKey: true,
+const HospitalId = sequelize.define(
+  "HospitalId",
+  {
+    id: {
+      type: DataTypes.STRING,
+      primaryKey: true,
+    },
+    secret: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    name: {
+      type: DataTypes.STRING,
+    },
   },
-  secret: {
-    type: String,
-    allowNull: false,
-  },
-  name: {
-    type: String,
-  },
-});
+  {
+    freezeTableName: true,
+  }
+);
 
 module.exports = HospitalId;

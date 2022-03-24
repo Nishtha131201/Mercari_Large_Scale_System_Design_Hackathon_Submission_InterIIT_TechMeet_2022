@@ -8,6 +8,7 @@ const app = express();
 const { MONGO_URL } = process.env;
 const routes = require("./routes/inventory.routes");
 const methodOverride = require("method-override");
+const serverless = require("serverless-http");
 
 var corsOptions = {
   origin: "*",
@@ -46,3 +47,5 @@ app.use("/inventory", routes);
 app.listen(PORT, (req, res) => {
   console.log(`Server is running on Port ${PORT}`);
 });
+
+module.exports.handler = serverless(app);
