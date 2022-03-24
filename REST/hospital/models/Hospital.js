@@ -32,7 +32,12 @@ const Hospital = sequelize.define(
       unique: true,
     },
     doctors: {
-      type: DataTypes.ARRAY(DataTypes.JSON),
+      // type: DataTypes.ARRAY(DataTypes.JSON),
+      type: DataTypes.JSON,
+    },
+    isMultiChain: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
     },
     chain: {
       type: DataTypes.STRING,

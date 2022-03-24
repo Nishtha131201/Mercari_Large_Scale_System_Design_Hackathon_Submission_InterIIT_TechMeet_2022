@@ -36,9 +36,10 @@ app.use(morgan("dev"));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 sequelize
-  .sync({
-    force: true,
-  })
+  // .sync({
+  //   force: true,
+  // })
+  .sync()
   .then((result) => {
     console.log("Sync Done");
   })
