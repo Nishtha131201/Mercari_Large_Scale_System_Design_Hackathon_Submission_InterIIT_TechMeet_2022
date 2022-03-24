@@ -9,7 +9,7 @@ const Patient = sequelize.define(
       defaultValue: DataTypes.UUIDV4,
       primaryKey: true,
     },
-    nhid: {
+    NHID: {
       type: DataTypes.STRING,
       unique: true,
     },
@@ -31,7 +31,7 @@ const Patient = sequelize.define(
     mobile_number: {
       type: DataTypes.STRING,
     },
-    aadhaar: {
+    aadhar_number: {
       type: DataTypes.STRING,
     },
     blood_group: {

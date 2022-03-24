@@ -18,6 +18,7 @@ exports.addPatient = async (req, res) => {
       dependant,
       dependee,
     } = req.body;
+    console.log(req.body);
     axios
       .post("http://localhost:8000/patient/", {
         NHID,
@@ -36,16 +37,14 @@ exports.addPatient = async (req, res) => {
         dependee,
       })
       .then((response) => {
+        console.log(response);
         res.status(200).json({
           status: "Success",
           message: "New Patient Added",
-          data: response,
         });
       })
       .catch((error) => {
-        res
-          .status(404)
-          .json({ status: "Failure", message: "Error in Saving data" });
+        res.status(404).json({ status: "Failure", message: "Not Saved" });
       });
   } catch (error) {
     return res
@@ -58,21 +57,19 @@ exports.getPatientDetails = async (req, res) => {
   try {
     const NHID = req.params.NHID;
     axios
-      .get(`http://localhost:8000/patient?NHID=${NHID}`)
+      .get(`http://localhost:8000/patient/${NHID}`)
       .then((response) => {
         res.status(200).json({ status: "Success", data: response });
       })
       .catch((error) => {
-        res.status(424).json({ status: "Failed", message: "Request Failed" });
+        res.status(424).json({ status: "Failed", message: error });
       });
   } catch (error) {
-    return res
-      .status(424)
-      .json({ status: "Failed", message: "Request Failed" });
+    return res.status(424).json({ status: "Failed", message: error });
   }
 };
 
-exports.getPatientMedicalHistory = (req, res) => {
+exports.getPatientMedicalHistory = async (req, res) => {
   try {
     const NHID = req.params.NHID;
     axios
@@ -90,7 +87,7 @@ exports.getPatientMedicalHistory = (req, res) => {
   }
 };
 
-exports.getPatientMedicinePrescription = (req, res) => {
+exports.getPatientMedicinePrescription = async (req, res) => {
   try {
     const prescription_id = req.params.prescriptionID;
     axios
@@ -108,7 +105,7 @@ exports.getPatientMedicinePrescription = (req, res) => {
   }
 };
 
-exports.getPatientLabReports = (req, res) => {
+exports.getPatientLabReports = async (req, res) => {
   try {
     const prescription_id = req.params.prescription_id;
     axios
@@ -125,5 +122,3 @@ exports.getPatientLabReports = (req, res) => {
       .json({ status: "Failed", message: "Request Failed" });
   }
 };
-
-

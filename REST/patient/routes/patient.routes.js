@@ -5,9 +5,9 @@ const router = express.Router({
 const Controller = require("../controllers/patient.controller");
 router.get("/", Controller.getAllPatient);
 router.post("/", Controller.postNewPatient);
-router.get("/:id", Controller.getPatient);
+// router.get("/:id", Controller.getPatient);
+router.get("/:NHID", Controller.getPatientByNHID);
 router.put("/:id/edit", Controller.editPatient);
 router.post("/:id/delete", Controller.deletePatient);
-router.get("/:NHID", Controller.getPatientByNHID);
 
 module.exports = router;
