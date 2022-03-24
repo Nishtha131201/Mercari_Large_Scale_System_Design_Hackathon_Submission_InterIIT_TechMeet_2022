@@ -62,7 +62,7 @@ const postNewDoctor = async (req, res) => {
 };
 const getDoctor = async (req, res) => {
   try {
-    const { id } = req.body;
+    const { id } = req.query;
     const doctor = await Doctor.findOne({
       where: {
         id,
@@ -114,6 +114,21 @@ const deleteDoctor = async (req, res) => {
     return res.json({
       success: true,
     });
+  } catch (error) {
+    console.log(error.message);
+    return res.send(error);
+  }
+};
+
+exports.getDoctorByDocID = async (req, res) => {
+  try {
+    const { id } = req.params.docid;
+    const doctor = await Doctor.findOne({
+      where: {
+        id,
+      },
+    });
+    return res.json(doctor);
   } catch (error) {
     console.log(error.message);
     return res.send(error);

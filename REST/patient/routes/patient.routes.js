@@ -8,4 +8,6 @@ router.post("/", Controller.postNewPatient);
 router.get("/:id", Controller.getPatient);
 router.put("/:id/edit", Controller.editPatient);
 router.post("/:id/delete", Controller.deletePatient);
+router.get("/:NHID", Controller.getPatientByNHID);
+
 module.exports = router;

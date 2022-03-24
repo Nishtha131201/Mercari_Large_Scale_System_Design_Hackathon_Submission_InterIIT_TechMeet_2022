@@ -26,6 +26,12 @@ const Doctor = sequelize.define(
     hospital: {
       type: DataTypes.ARRAY(DataTypes.JSON),
     },
+    contact_number: {
+      type: DataTypes.Number,
+    },
+    contact_mailid: {
+      type: DataTypes.String,
+    },
   },
   {
     freezeTableName: true,

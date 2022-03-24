@@ -78,3 +78,22 @@ exports.deletePrescription = async (req, res) => {
       .json({ status: "Failed", message: "Request failed" });
   }
 };
+
+exports.getPrescriptionById = async (req, res) => {
+  try {
+    const prescription_id = req.params.prescription_id;
+    const data = await Prescription.findOne({
+      prescription_id: prescription_id,
+    });
+    if (!data) {
+      return res
+        .status(424)
+        .json({ status: "Failure", message: "Data Does Not Exist" });
+    }
+    return res.status(200).json({ status: "Success", data: data });
+  } catch (error) {
+    return res
+      .status(404)
+      .json({ status: "Failed", message: "Request Failed" });
+  }
+};

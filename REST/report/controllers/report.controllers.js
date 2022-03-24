@@ -1,4 +1,5 @@
 const Report = require("../models/report");
+const { route } = require("../routes/report.routes");
 
 exports.getAllReport = async (req, res) => {
   try {
@@ -76,5 +77,20 @@ exports.deleteReport = async (req, res) => {
     return res
       .status(424)
       .json({ status: "Failed", message: "Request failed" });
+  }
+};
+
+exports.getReportByPrescriptionId = async (req, res) => {
+  try {
+    const prescription_id = req.params.prescription_id;
+    const data = await Report.findOne({ prescription_id: prescription_id });
+    if (!data) {
+      return res
+        .status(424)
+        .json({ status: "Failure", message: "Data Does Not Exist" });
+    }
+    return res.status(200).json({ status: "Success", data: data });
+  } catch (error) {
+    return res.status(404).json({ status: "Failure", message: error.message });
   }
 };

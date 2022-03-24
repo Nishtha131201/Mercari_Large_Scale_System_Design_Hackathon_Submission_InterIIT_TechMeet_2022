@@ -185,3 +185,24 @@ module.exports = {
   editPatient,
   deletePatient,
 };
+
+exports.getPatientByNHID = (req, res) => {
+  try {
+    const NHID = req.params.NHID;
+    const data = await Patient.findOne({
+      where: {
+        NHID,
+      },
+    });
+    if (!data) {
+      return res
+        .status(424)
+        .json({ status: "Failure", message: "Does Not Exist" });
+    }
+    return res
+      .status(200)
+      .json({ status: "Success", message: "Data Found", data: data });
+  } catch (error) {
+    return res.status(404).json({ status: "Failure", message: error.message });
+  }
+};
