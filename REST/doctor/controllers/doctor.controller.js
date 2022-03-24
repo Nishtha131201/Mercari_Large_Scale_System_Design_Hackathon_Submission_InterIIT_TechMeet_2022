@@ -62,7 +62,7 @@ const postNewDoctor = async (req, res) => {
 };
 const getDoctor = async (req, res) => {
   try {
-    const { id } = req.body;
+    const { id } = req.query;
     const doctor = await Doctor.findOne({
       where: {
         id,
