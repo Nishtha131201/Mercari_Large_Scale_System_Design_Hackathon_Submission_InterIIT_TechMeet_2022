@@ -1,5 +1,4 @@
-service: doctorid
-
+service: bill
 frameworkVersion: '3'
 
 provider:
@@ -9,7 +8,7 @@ provider:
   region: ap-south-1
 
 functions:
-  doctoridTest:
+  billsTest:
     handler: index.handler
     events:
       - http: ANY /

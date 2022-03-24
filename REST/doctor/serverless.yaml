@@ -1,15 +1,14 @@
-service: doctorid
-
+service: Doctor
 frameworkVersion: '3'
 
 provider:
   name: aws
-  runtime: nodejs14.x
+  runtime: nodejs12.x
   stage: dev
   region: ap-south-1
 
 functions:
-  doctoridTest:
+  doctorTest:
     handler: index.handler
     events:
       - http: ANY /
