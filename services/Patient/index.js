@@ -6,6 +6,7 @@ const PORT = process.env.PORT || 8000;
 const app = express();
 const routes = require("./routes/patient.routes");
 const methodOverride = require("method-override");
+const serverless = require("serverless-http");
 
 var corsOptions = {
   origin: "*",
@@ -36,3 +37,5 @@ app.use("/patient", routes);
 app.listen(PORT, (req, res) => {
   console.log(`Server is running on Port ${PORT}`);
 });
+
+module.exports.handler = serverless(app);

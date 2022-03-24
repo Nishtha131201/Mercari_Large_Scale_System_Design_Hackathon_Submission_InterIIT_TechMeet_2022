@@ -1,14 +1,11 @@
 const express = require("express");
 const cors = require("cors");
+const morgan = require("morgan");
 const bodyParser = require("body-parser");
-require("dotenv").config();
-const PORT = process.env.PORT || 8000;
-const app = express();
-const routes = require("./routes/doctor.routes");
-const methodOverride = require("method-override");
 
-const serverless = require("serverless-http");
-var corsOptions = {
+const app = express();
+
+const corsOptions = {
   origin: "*",
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   credentials: true,
@@ -26,16 +23,13 @@ app.use((req, res, next) => {
   );
   next();
 });
-// parse application/x-www-form-urlencoded
+
+app.use(morgan("dev"));
+
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(methodOverride("_method"));
-
-// parse application/json
 app.use(bodyParser.json());
-app.use("/doctor", routes);
 
-app.listen(PORT, (req, res) => {
-  console.log(`Server is running on Port ${PORT}`);
-});
+const Routes = require("./routes/patient.routes");
+app.use("/patient", Routes);
 
-module.exports.handler = serverless(app);
+module.exports = app;

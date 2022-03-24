@@ -9,7 +9,7 @@ const Patient = sequelize.define(
       defaultValue: DataTypes.UUIDV4,
       primaryKey: true,
     },
-    NHID: {
+    nhid: {
       type: DataTypes.STRING,
       unique: true,
     },
@@ -26,12 +26,12 @@ const Patient = sequelize.define(
       type: DataTypes.STRING,
     },
     dob: {
-      type: DataTypes.DATE,
+      type: DataTypes.STRING,
     },
     mobile_number: {
       type: DataTypes.STRING,
     },
-    aadhar_number: {
+    aadhaar: {
       type: DataTypes.STRING,
     },
     blood_group: {
@@ -50,7 +50,7 @@ const Patient = sequelize.define(
       type: DataTypes.STRING,
     },
     dependant: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.BOOLEAN,
     },
     dependee: {
       type: DataTypes.STRING,
