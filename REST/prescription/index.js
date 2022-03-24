@@ -8,7 +8,7 @@ const app = express();
 const { MONGO_URL } = process.env;
 const routes = require("./routes/prescription.routes");
 const methodOverride = require("method-override");
-
+app.use(methodOverride("_method"));
 var corsOptions = {
   origin: "*",
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
@@ -29,7 +29,7 @@ app.use((req, res, next) => {
 });
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(methodOverride("_method"));
+
 //Database Connection
 mongoose
   .connect(MONGO_URL, {

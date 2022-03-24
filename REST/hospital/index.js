@@ -5,7 +5,8 @@ const Sequelize = require("sequelize");
 const bodyParser = require("body-parser");
 const serverless = require("serverless-http");
 require("dotenv").config();
-
+const methodOverride = require("method-override");
+app.use(methodOverride("_method"));
 const PORT = process.env.PORT || 8000;
 
 const app = express();

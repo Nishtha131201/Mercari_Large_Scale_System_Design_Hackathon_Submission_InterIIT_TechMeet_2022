@@ -18,7 +18,11 @@
     "fs": "^0.0.1-security",
     "method-override": "^3.0.0",
     "mongoose": "^6.2.8",
+<<<<<<< HEAD
     "morgan": "^1.10.0",
     "serverless-http": "^2.7.0"
+=======
+    "morgan": "^1.10.0"
+>>>>>>> c8db17daad06eebce978f32c0624eb9d0235100d
   }
 }

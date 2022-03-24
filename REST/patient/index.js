@@ -3,7 +3,8 @@ const cors = require("cors");
 const morgan = require("morgan");
 const Sequelize = require("sequelize");
 const bodyParser = require("body-parser");
-
+const methodOverride = require("method-override");
+app.use(methodOverride("_method"));
 require("dotenv").config();
 
 const PORT = process.env.PORT || 8000;

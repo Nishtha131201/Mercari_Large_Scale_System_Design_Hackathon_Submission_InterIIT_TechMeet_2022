@@ -27,7 +27,7 @@ const Doctor = sequelize.define(
       type: DataTypes.JSON,
     },
     contact_number: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.NUMBER,
     },
     contact_mailid: {
       type: DataTypes.STRING,
